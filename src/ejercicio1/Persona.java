@@ -1,5 +1,7 @@
 package ejercicio1;
 
+import ejercico1.DniInvalido;
+
 public class Persona implements Comparable<Persona> {
 	String Dni;
 	String Nombre;
@@ -49,7 +51,26 @@ public class Persona implements Comparable<Persona> {
 		return this.getApellido().compareTo(obj.getApellido());
 		
 	}
-
+	
+	public int hashCode() {
+		int result = 1;
+		result += ((Apellido == null) ? 0 : Apellido.hashCode());
+		result += ((Nombre == null) ? 0 : Nombre.hashCode());
+		result += ((Dni == null) ? 0 : Dni.hashCode());
+		return result;	
+	}
+	
+	public static void VerificarDniInvalido(String dni) throws DniInvalido 
+	{
+		 	for (int i = 0; i < dni.length();i++)
+		 	{
+		 		if(!dni.matches("^[0-9]*$"))
+		 		{
+		 			DniInvalido MalDni = new DniInvalido();
+		 			throw MalDni;
+		 		}			
+		 	}
+	}
 	
 
 }
