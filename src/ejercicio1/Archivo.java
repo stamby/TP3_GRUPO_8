@@ -1,7 +1,9 @@
 package ejercicio1;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,29 @@ import java.util.List;
 
 public class Archivo {
 	private String ruta;
+	
+	public boolean existe()
+	{
+		File archivo = new File(ruta); 
+		if(archivo.exists())
+		      return true;
+		return false;
+	}
+	
+	public boolean creaArchivo()
+	{
+		FileWriter escritura;
+		try {
+			escritura = new FileWriter(ruta, true);
+			escritura.write("");
+			escritura.close();
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+			
+	}
 	
 	public List<Persona>  lee_Archivo() {
 		FileReader entrada;
