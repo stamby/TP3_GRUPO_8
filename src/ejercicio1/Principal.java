@@ -1,7 +1,5 @@
 package ejercicio1;
 
-import javax.swing.JOptionPane;
-
 import ejercicio1.DniInvalido;
 import ejercicio1.Persona;
 import ejercicio1.Archivo;
@@ -21,19 +19,21 @@ public class Principal {
 			System.out.println("No existe archivo entonces lo creo");
 			archivo.creaArchivo();
 		}
-
-		String Dni = JOptionPane.showInputDialog("Ingrese el DNI:");
 		
-		try 
-		{
-		    Persona.VerificarDniInvalido(Dni);
-			System.out.println("DNI es Valido");
-		}
-		catch (DniInvalido e) 
-		{
-			e.printStackTrace();
-			System.out.println("DNI NO ES VALIDO");
-		}
+		archivo.lee_lineas();
+
+//		String Dni = JOptionPane.showInputDialog("Ingrese el DNI:");
+//		
+//		try 
+//		{
+//		    Persona.VerificarDniInvalido(Dni);
+//			System.out.println("DNI es Valido");
+////		}
+//		catch (DniInvalido e) 
+//		{
+//			e.printStackTrace();
+//			System.out.println("DNI NO ES VALIDO");
+//		}
 	}
 
 }
