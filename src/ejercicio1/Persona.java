@@ -17,20 +17,32 @@ public class Persona implements Comparable<Persona> {
 	}
 	
 
+	public void setDni(String dni) {
+		Dni = dni;
+	}
+	public void setNombre(String nombre) {
+		Nombre = nombre;
+	}
+	public void setApellido(String apellido) {
+		Apellido = apellido;
+	}
 	public String getDni() {
 		return Dni;
 	}
-
 
 	public String getNombre() {
 		return Nombre;
 	}
 
-
 	public String getApellido() {
 		return Apellido;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "Persona [Dni=" + Dni + ", Nombre=" + Nombre + ", Apellido=" + Apellido + "]";
+	}
 	@Override
 	public int compareTo(Persona obj) {
 		// TODO Auto-generated method stub
