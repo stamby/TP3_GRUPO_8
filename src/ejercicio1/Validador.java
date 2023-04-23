@@ -7,7 +7,7 @@ public class Validador {
 	private static Pattern pattern;
 	
 	Validador() {
-		pattern = Pattern.compile("^[0-9]$");
+		pattern = Pattern.compile("^[0-9]+$");
 	}
 
 	public static void verificarDniInvalido(String dni) throws DniInvalido {
