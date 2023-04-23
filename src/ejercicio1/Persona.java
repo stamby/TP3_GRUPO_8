@@ -1,6 +1,7 @@
 package ejercicio1;
 
 import ejercicio1.DniInvalido;
+import ejercico1.Persona;
 
 public class Persona implements Comparable<Persona> {
 	String Dni;
@@ -47,18 +48,16 @@ public class Persona implements Comparable<Persona> {
 	}
 	@Override
 	public int compareTo(Persona obj) {
-		// TODO Auto-generated method stub
+		//orden alfabetico
 		return this.getApellido().compareTo(obj.getApellido());
-		
 	}
-	
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Apellido == null) ? 0 : Apellido.hashCode());
-		result = prime * result + ((Dni == null) ? 0 : Dni.hashCode());
-		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
+		int result = 0;
+		result = result + ((Apellido == null) ? 0 : Apellido.hashCode());
+		result = result + ((Dni == null) ? 0 : Dni.hashCode());
+		result = result + ((Nombre == null) ? 0 : Nombre.hashCode());
 		return result;
 	}
 	
