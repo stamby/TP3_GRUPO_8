@@ -1,6 +1,7 @@
 package ejercicio1;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -71,5 +72,19 @@ public class Archivo {
 		}
 		//Collections.sort(miArrayList);
 		return miArrayList;
+	}
+	
+	public void escribe_lineas(String frase) {
+		try 
+		{	
+			FileWriter entrada = new FileWriter(ruta, true);
+			BufferedWriter miBuffer = new BufferedWriter(entrada);
+			miBuffer.write(frase);
+			miBuffer.close();
+			entrada.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
