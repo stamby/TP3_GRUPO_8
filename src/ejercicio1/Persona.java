@@ -1,6 +1,6 @@
 package ejercicio1;
 
-import ejercico1.DniInvalido;
+import ejercicio1.DniInvalido;
 
 public class Persona implements Comparable<Persona> {
 	String Dni;
