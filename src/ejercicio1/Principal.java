@@ -8,20 +8,20 @@ import ejercicio1.Archivo;
 
 public class Principal {
 	
-	Archivo archivo = new Archivo();
-	archivo.setRuta("Personas.txt");
-	
-	if(archivo.existe())
-	{
-		System.out.println("Existe archivo");
-	}
-	else
-	{
-		System.out.println("No existe archivo entonces lo creo");
-		archivo.creaArchivo();
-	}
-
 	public static void main(String[] args) {
+		Archivo archivo = new Archivo();
+		archivo.setRuta("Personas.txt");
+		
+		if(archivo.existe())
+		{
+			System.out.println("Existe archivo");
+		}
+		else
+		{
+			System.out.println("No existe archivo entonces lo creo");
+			archivo.creaArchivo();
+		}
+
 		String Dni = JOptionPane.showInputDialog("Ingrese el DNI:");
 		
 		try 
