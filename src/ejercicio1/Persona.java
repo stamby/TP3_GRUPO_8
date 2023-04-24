@@ -1,6 +1,6 @@
 package ejercicio1;
 
-public class Persona  {
+public class Persona implements Comparable<Persona>  {
 	String dni;
 	String nombre;
 	String apellido;
@@ -40,13 +40,9 @@ public class Persona  {
 		}
 	}
 	
-	public int compareTo(Object o) {
-	    if (!(o instanceof Persona))
-	      throw new ClassCastException();
-
-	    Persona p = (Persona) o;
-
-	    return (apellido + nombre).compareTo(p.getApellido() + p.getNombre());
+	@Override
+	public int compareTo(Persona p) {
+	    return (apellido + nombre + dni).compareTo(p.getApellido() + p.getNombre() + p.getDni());
 	}
 	
 	@Override
