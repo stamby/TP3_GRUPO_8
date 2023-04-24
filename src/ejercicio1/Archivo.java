@@ -1,117 +1,68 @@
 package ejercicio1;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.TreeSet;
 
 
 public class Archivo {
 	private String ruta;
-	
-	public String getRuta() {
-		return ruta;
-	}
 
-	public void setRuta(String ruta) {
+	Archivo(String ruta) {
 		this.ruta = ruta;
 	}
-
-	public boolean existe()
-	{
-		File archivo = new File(ruta); 
-		if(archivo.exists())
-		      return true;
-		return false;
-	}
 	
-	public boolean creaArchivo()
-	{
-		FileWriter escritura;
-		try {
-			escritura = new FileWriter(ruta, true);
-			escritura.write("");
-			escritura.close();
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return false;
-			
-	}
-	
-//	public List<Persona>  lee_Archivo() {
-//		FileReader entrada;
-//		List<Persona> miArrayList = new ArrayList<>();
-//		
-//	
-//		
-//		try {
-//			entrada = new FileReader(ruta);
-//			BufferedReader miBuffer = new BufferedReader(entrada);
-//			
-//		    String linea = "";
-//			while (linea != null) {
-//				
-//				linea = miBuffer.readLine();
-//				String []cadena = linea.split("-");
-//				Persona Persona = new Persona(cadena[2], cadena[0], cadena[1]); 
-//				
-//				
-//				miArrayList.add(Persona);
-//				
-//				/*
-//				if(!miArrayList.contains(linea)) {
-//					miArrayList.add(linea);	 
-//				}
-//				System.out.println(linea);
-//				linea = miBuffer.readLine();*/
-//			}
-//			miBuffer.close();
-//			entrada.close();
-//
-//		} catch (IOException e) {
-//			System.out.println("No se encontro el archivo");
-//			return miArrayList;
-//		}
-//		//Collections.sort(miArrayList);
-//		return miArrayList;
-//	}
-	
-	public void escribe_lineas(String frase) {
-		try 
-		{	
-			FileWriter entrada = new FileWriter(ruta, true);
-			BufferedWriter miBuffer = new BufferedWriter(entrada);
-			miBuffer.write(frase);
-			miBuffer.close();
-			entrada.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void lee_lineas() {
+	public TreeSet<Persona> devolverTreeSet() {
 		FileReader entrada;
+		TreeSet<Persona> treeset = new TreeSet<Persona>();
+		
 		try {
-			entrada = new FileReader (ruta);
-			BufferedReader miBuffer = new BufferedReader (entrada);
+			entrada = new FileReader(ruta);
+			BufferedReader buffer = new BufferedReader (entrada);
 			
 			String linea = "";
+			String[] lineaSplit;
+			
 			while (linea != null) {
 				System.out.println(linea);
-				linea = miBuffer.readLine();
+				linea = buffer.readLine();
+				
+				lineaSplit = linea.split("-");
+				
+				if (lineaSplit.length != 3) {
+					continue;
+				}
+				
+				treeset.add(new Persona(lineaSplit[2], lineaSplit[0], lineaSplit[1]));
 			}
-			miBuffer.close();
+			
+			buffer.close();
 			entrada.close();
 		}
 		catch (IOException e) {
 			System.out.println("No se encontro el archivo");
 		}
+		
+		return treeset;
+	}
+	
+	public void escribirTreeSet(TreeSet<Persona> treeset) {
+		FileWriter escritura = null;
+		
+		try {
+			escritura = new FileWriter(ruta, true);
+			
+			for (Persona p : treeset) {
+				escritura.write(p.toString() + System.lineSeparator());
+			}
+			
+			escritura.close();	
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

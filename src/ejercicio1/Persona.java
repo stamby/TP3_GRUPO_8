@@ -1,105 +1,68 @@
 package ejercicio1;
 
-import ejercicio1.DniInvalido;
-import ejercicio1.Persona;
+public class Persona  {
+	String dni;
+	String nombre;
+	String apellido;
 
-public class Persona implements Comparable<Persona> {
-	String Dni;
-	String Nombre;
-	String Apellido;
-	//Constructores
-	public Persona() {
-		this.Apellido = "";
-		this.Nombre = "";
-		this.Dni = "";
+	public Persona(String dni, String nombre, String apellido) throws DniInvalido {
+		this.setDni(dni);
+		this.setNombre(nombre);
+		this.setApellido(apellido);
 	}
-	public Persona(String dni, String nombre, String apellido) {
-		Dni = dni;
-		Nombre = nombre;
-		Apellido = apellido;
-	}
-	
 
-	public void setDni(String dni) {
-		Dni = dni;
+	public void setDni(String dni) throws DniInvalido {
+		verificarDniInvalido(dni);
+		this.dni = dni;
 	}
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		this.nombre = nombre;
 	}
 	public void setApellido(String apellido) {
-		Apellido = apellido;
+		this.apellido = apellido;
 	}
+
 	public String getDni() {
-		return Dni;
+		return dni;
 	}
 
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 
 	public String getApellido() {
-		return Apellido;
+		return apellido;
 	}
 	
+	public static void verificarDniInvalido(String dni) throws DniInvalido {		
+		if (!dni.matches("^[0-9]+$")) {
+			throw new DniInvalido();
+		}
+	}
 	
-	@Override
-	public String toString() {
-		return "Persona [Dni=" + Dni + ", Nombre=" + Nombre + ", Apellido=" + Apellido + "]";
-	}
-	@Override
-	public int compareTo(Persona obj) {
-		//orden alfabetico
-		return this.getApellido().compareTo(obj.getApellido());
-	}
+	public int compareTo(Object o) {
+	    if (!(o instanceof Persona))
+	      throw new ClassCastException();
 
-	@Override
-	public int hashCode() {
-		int result = 0;
-		result = result + ((Apellido == null) ? 0 : Apellido.hashCode());
-		result = result + ((Dni == null) ? 0 : Dni.hashCode());
-		result = result + ((Nombre == null) ? 0 : Nombre.hashCode());
-		return result;
+	    Persona p = (Persona) o;
+
+	    return (apellido + nombre).compareTo(p.getApellido() + p.getNombre());
 	}
 	
-	public static void VerificarDniInvalido(String dni) throws DniInvalido 
-	{
-		 	for (int i = 0; i < dni.length();i++)
-		 	{
-		 		if(!dni.matches("^[0-9]*$"))
-		 		{
-		 			DniInvalido MalDni = new DniInvalido();
-		 			throw MalDni;
-		 		}			
-		 	}
-	}
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(Object o) {
+		if (this == o)
 			return true;
-		if (obj == null)
+		if (o == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (getClass() != o.getClass())
 			return false;
-		Persona other = (Persona) obj;
-		if (Apellido == null) {
-			if (other.Apellido != null)
-				return false;
-		} else if (!Apellido.equals(other.Apellido))
-			return false;
-		if (Dni == null) {
-			if (other.Dni != null)
-				return false;
-		} else if (!Dni.equals(other.Dni))
-			return false;
-		if (Nombre == null) {
-			if (other.Nombre != null)
-				return false;
-		} else if (!Nombre.equals(other.Nombre))
-			return false;
-		return true;
+		Persona p = (Persona) o;
+		return this.toString() == p.toString();
 	}
-	
-	
-	
 
+	@Override
+    public String toString() {
+		return apellido + ", " + nombre + ", " + dni;
+	}
 }
