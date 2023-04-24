@@ -35,7 +35,12 @@ public class Archivo {
 					continue;
 				}
 				
-				treeset.add(new Persona(lineaSplit[2], lineaSplit[0], lineaSplit[1]));
+				try {
+					treeset.add(new Persona(lineaSplit[2], lineaSplit[0], lineaSplit[1]));
+				}
+				catch (DniInvalido d) {
+					continue;
+				}
 			}
 			
 			buffer.close();
