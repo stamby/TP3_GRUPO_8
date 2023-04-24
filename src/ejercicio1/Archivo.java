@@ -37,7 +37,7 @@ public class Archivo {
 					treeset.add(new Persona(lineaSplit[2], lineaSplit[0], lineaSplit[1]));
 				}
 				catch (DniInvalido d) {
-					continue;
+					d.printStackTrace();
 				}
 				
 				linea = buffer.readLine();
@@ -57,7 +57,7 @@ public class Archivo {
 		FileWriter escritura = null;
 		
 		try {
-			escritura = new FileWriter(ruta, true);
+			escritura = new FileWriter(ruta);
 			
 			for (Persona p : treeset) {
 				escritura.write(p.toString() + System.lineSeparator());
