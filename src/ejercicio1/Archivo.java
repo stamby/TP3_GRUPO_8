@@ -25,15 +25,13 @@ public class Archivo {
 			String linea = "";
 			String[] lineaSplit;
 			
+			linea = buffer.readLine();
+
 			while (linea != null) {
-				System.out.println(linea);
-				linea = buffer.readLine();
-				
 				lineaSplit = linea.split("-");
 				
-				if (lineaSplit.length != 3) {
+				if (lineaSplit.length < 3)
 					continue;
-				}
 				
 				try {
 					treeset.add(new Persona(lineaSplit[2], lineaSplit[0], lineaSplit[1]));
@@ -41,6 +39,8 @@ public class Archivo {
 				catch (DniInvalido d) {
 					continue;
 				}
+				
+				linea = buffer.readLine();
 			}
 			
 			buffer.close();
